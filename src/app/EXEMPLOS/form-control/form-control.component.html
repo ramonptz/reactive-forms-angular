@@ -1,0 +1,7 @@
+<label for="name">NOME:</label>
+<input type="text" id="name" [formControl]="nome" (input)="inputAlterado($event)"/>
+
+<p>VALOR: {{nome.value}}</p>
+<button (click)="status()">Mostrar Status</button>
+
+<button (click)="alterarValor()">Alterar Valor</button>
