@@ -10,11 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormControlComponent implements OnInit {
 
+  // nome = new FormControl({value: '', disabled: true}, [Validators.required]);
+  // nome = new FormControl('', [Validators.required]);
+  // nome = new FormControl('inicial', {nonNullable: true, validators:[Validators.required, Validators.minLength(3)]});
+  nome = new FormControl('inicial', {nonNullable: true, validators:[Validators.required, Validators.minLength(6)], updateOn: 'change'});
+
   ngOnInit() {
     console.log(this.nome);
-  }
 
-  nome = new FormControl({value: '', disabled: true}, [Validators.required]);
+    this.nome.valueChanges.subscribe( resultado => console.log('valueChanges : ',resultado));
+
+    this.nome.statusChanges.subscribe( resultado => console.log('statusChanges: ', resultado));
+  }
 
   status() {
     console.log(this.nome);
@@ -25,15 +32,36 @@ export class FormControlComponent implements OnInit {
   }
 
   inputAlterado(event: Event) {
+    // console.log('require: ' ,this.nome.hasError('required'))
+    // console.log('minlenth:' +this.nome.hasError('minlength'))
     console.log(event);
   }
 
   habilitar() {
-  this.nome.enable();
+    this.nome.enable();
   }
 
   desabilitar() {
-  this.nome.disable();
+    this.nome.disable();
+  }
+
+  // resetar() {
+  // this.nome.reset();
+  // }
+  resetar() {
+    this.nome.reset('valor reset');
+  }
+
+  setValidator() {
+    this.nome.setValidators(Validators.minLength(6));
+    this.nome.setValue('Ra');
+    this.nome.setValidators(Validators.minLength(6));
+    this.nome.updateValueAndValidity();
+  }
+
+  addValidator(){
+    this.nome.addValidators(Validators.maxLength(7));
+    this.nome.updateValueAndValidity();
   }
 
 }

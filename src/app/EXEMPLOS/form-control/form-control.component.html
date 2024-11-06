@@ -1,7 +1,19 @@
 <label for="name">NOME:</label>
 <input type="text" id="name" [formControl]="nome" (input)="inputAlterado($event)"/>
+<div style="color: red;">
+  @if(nome.hasError('required')){
+    <span>O campo nome é obrigatório.</span>
+  }
+  @if(nome.hasError('minlength')){
+    <span>é necessário no minímo 6 caracteres.</span>
+  }
+  @if(nome.hasError('maxlength')){
+    <span>é necessário no minímo 7 caracteres.</span>
+  }
+</div>
 
 <p>VALOR: {{nome.value}}</p>
+<p>Válido: {{nome.valid}}</p>
 <button (click)="status()">Mostrar Status</button> <br>
 
 <button (click)="alterarValor()">Alterar Valor</button> <br>
@@ -9,3 +21,12 @@
 <button (click)="desabilitar()">Desabilitar</button> <br>
 
 <button (click)="habilitar()">Habilitar</button> <br>
+
+<button (click)="resetar()">Resetar</button> <br>
+
+<button (click)="setValidator()">setValidator</button> <br>
+
+<button (click)="addValidator()">addValidator</button> <br>
+
+
+
