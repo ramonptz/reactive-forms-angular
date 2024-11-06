@@ -9,22 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './form-control.component.scss'
 })
 export class FormControlComponent implements OnInit {
-  
+
   ngOnInit() {
     console.log(this.nome);
   }
-  
-  nome = new FormControl('', [Validators.required]);
-  
+
+  nome = new FormControl({value: '', disabled: true}, [Validators.required]);
+
   status() {
     console.log(this.nome);
   }
-  
+
   alterarValor() {
     this.nome.setValue('Alterado !!!');
   }
-  
+
   inputAlterado(event: Event) {
     console.log(event);
   }
+
+  habilitar() {
+  this.nome.enable();
+  }
+
+  desabilitar() {
+  this.nome.disable();
+  }
+
 }

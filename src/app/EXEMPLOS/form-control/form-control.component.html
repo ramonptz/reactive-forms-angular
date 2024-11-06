@@ -2,6 +2,10 @@
 <input type="text" id="name" [formControl]="nome" (input)="inputAlterado($event)"/>
 
 <p>VALOR: {{nome.value}}</p>
-<button (click)="status()">Mostrar Status</button>
+<button (click)="status()">Mostrar Status</button> <br>
 
-<button (click)="alterarValor()">Alterar Valor</button>
+<button (click)="alterarValor()">Alterar Valor</button> <br>
+
+<button (click)="desabilitar()">Desabilitar</button> <br>
+
+<button (click)="habilitar()">Habilitar</button> <br>
