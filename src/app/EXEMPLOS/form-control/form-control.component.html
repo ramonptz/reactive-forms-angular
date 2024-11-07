@@ -10,6 +10,9 @@
   @if(nome.hasError('maxlength')){
     <span>é necessário no minímo 7 caracteres.</span>
   }
+  @if(nome.hasError('invalidText')){
+    <span>{{ nome.errors?.['invalidText'] }}</span>
+  }
 </div>
 
 <p>VALOR: {{nome.value}}</p>

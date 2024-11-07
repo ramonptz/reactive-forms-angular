@@ -1,5 +1,7 @@
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { invalidTextValidator } from './invalid-text-validator';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-form-control',
@@ -13,14 +15,17 @@ export class FormControlComponent implements OnInit {
   // nome = new FormControl({value: '', disabled: true}, [Validators.required]);
   // nome = new FormControl('', [Validators.required]);
   // nome = new FormControl('inicial', {nonNullable: true, validators:[Validators.required, Validators.minLength(3)]});
-  nome = new FormControl('inicial', {nonNullable: true, validators:[Validators.required, Validators.minLength(6)], updateOn: 'change'});
+  // nome = new FormControl('inicial', {nonNullable: true, validators:[Validators.required, Validators.minLength(6)], updateOn: 'change'});
+  nome = new FormControl('inicial', {nonNullable: true, validators:[invalidTextValidator('ramon')], updateOn: 'blur'});
 
   ngOnInit() {
-    console.log(this.nome);
+  //   this.nome.valueChanges.pipe(debounceTime(3000)
+  // ).subscribe(value => console.log(value));
+  //   console.log(this.nome);
 
-    this.nome.valueChanges.subscribe( resultado => console.log('valueChanges : ',resultado));
+    // this.nome.valueChanges.subscribe( resultado => console.log('valueChanges : ',resultado));
 
-    this.nome.statusChanges.subscribe( resultado => console.log('statusChanges: ', resultado));
+    // this.nome.statusChanges.subscribe( resultado => console.log('statusChanges: ', resultado));
   }
 
   status() {
